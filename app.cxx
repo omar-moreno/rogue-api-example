@@ -1,10 +1,18 @@
 
-#include "rogue/interfaces/api/Bsp.h"
+#include "rogue/interfaces/api/Root.h"
+#include <boost/python.hpp>
 
 #include <iostream>
 
 int main(int argc, char** argv) { 
 
+  Py_Initialize();  
+  boost::python::object module{boost::python::import("pyrogue.examples")};
+  boost::python::object root{module.attr("ExampleRoot")()}; 
+
+  rogue::interfaces::api::Root _root(root); 
+
+  /*
   rogue::interfaces::api::Bsp bsp("pyrogue.examples", "ExampleRoot");
 
   auto nodes{bsp.nodeList()};
@@ -41,5 +49,5 @@ int main(int argc, char** argv) {
 
     //std::cout << base_class_name << std::endl;
   }
-
+  */
 }
