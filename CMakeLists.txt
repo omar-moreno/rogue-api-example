@@ -4,6 +4,9 @@ project(rogue
 	DESCRIPTION "Rogue API example"
 	LANGUAGES CXX)
 
+if (DEFINED ENV{ROGUE_DIR})
+    set(Rogue_DIR $ENV{ROGUE_DIR}/lib)
+endif()
 find_package(Rogue REQUIRED)
 add_library(Rogue::Rogue INTERFACE IMPORTED GLOBAL)
 set_target_properties(Rogue::Rogue PROPERTIES
